@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD25D18E-C9B4-4139-A796-F9084AE211C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SLCore</RootNamespace>
+    <AssemblyName>libslcore</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CardInfo.cs" />
+    <Compile Include="Data\ClientData.cs" />
+    <Compile Include="Data\ClientDispatcher.cs" />
+    <Compile Include="Data\HostDispatcher.cs" />
+    <Compile Include="Data\ObserverData.cs" />
+    <Compile Include="Data\PrivateData.cs" />
+    <Compile Include="Data\PublicData.cs" />
+    <Compile Include="Data\HostData.cs" />
+    <Compile Include="Entity\GameHouse.cs" />
+    <Compile Include="Entity\GameObserver.cs" />
+    <Compile Include="Event\Client\StateReadyClient.cs" />
+    <Compile Include="Event\Client\StateSettingClient.cs" />
+    <Compile Include="Event\Client\StateWaitScore.cs" />
+    <Compile Include="Event\Dispatcher.cs" />
+    <Compile Include="Entity\GameClient.cs" />
+    <Compile Include="Entity\GameHost.cs" />
+    <Compile Include="Event\EventType.cs" />
+    <Compile Include="Event\GameEventArgs.cs" />
+    <Compile Include="Event\Host\StateCheckScore.cs" />
+    <Compile Include="Event\Host\StateReadyHost.cs" />
+    <Compile Include="Event\Host\StatePickLeader.cs" />
+    <Compile Include="Event\Host\StateSettingHost.cs" />
+    <Compile Include="Event\StateBase.cs" />
+    <Compile Include="Event\StateMachineBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>

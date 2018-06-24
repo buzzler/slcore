@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libslcore", "libslcore\libslcore.csproj", "{AD25D18E-C9B4-4139-A796-F9084AE211C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLSimulator", "SLSimulator\SLSimulator.csproj", "{FE774E95-D06A-4825-8825-A745055CCC80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD25D18E-C9B4-4139-A796-F9084AE211C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD25D18E-C9B4-4139-A796-F9084AE211C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD25D18E-C9B4-4139-A796-F9084AE211C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD25D18E-C9B4-4139-A796-F9084AE211C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE774E95-D06A-4825-8825-A745055CCC80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE774E95-D06A-4825-8825-A745055CCC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE774E95-D06A-4825-8825-A745055CCC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE774E95-D06A-4825-8825-A745055CCC80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
