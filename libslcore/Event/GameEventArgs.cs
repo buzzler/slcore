@@ -1,5 +1,4 @@
 ﻿using System;
-using SLCore.Data;
 
 namespace SLCore.Event
 {

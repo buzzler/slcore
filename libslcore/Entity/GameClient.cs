@@ -1,5 +1,4 @@
-﻿using System;
-using SLCore.Data;
+﻿using SLCore.Data;
 using SLCore.Event;
 using SLCore.Event.Client;
 

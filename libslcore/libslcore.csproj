@@ -48,7 +48,9 @@
     <Compile Include="Data\HostData.cs" />
     <Compile Include="Entity\GameHouse.cs" />
     <Compile Include="Entity\GameObserver.cs" />
+    <Compile Include="Event\Client\StateCheckTurn.cs" />
     <Compile Include="Event\Client\StateReadyClient.cs" />
+    <Compile Include="Event\Client\StateResultClient.cs" />
     <Compile Include="Event\Client\StateSettingClient.cs" />
     <Compile Include="Event\Client\StateWaitScore.cs" />
     <Compile Include="Event\Dispatcher.cs" />
@@ -59,7 +61,9 @@
     <Compile Include="Event\Host\StateCheckScore.cs" />
     <Compile Include="Event\Host\StateReadyHost.cs" />
     <Compile Include="Event\Host\StatePickLeader.cs" />
+    <Compile Include="Event\Host\StateResultHost.cs" />
     <Compile Include="Event\Host\StateSettingHost.cs" />
+    <Compile Include="Event\Host\StateWaitTurn.cs" />
     <Compile Include="Event\StateBase.cs" />
     <Compile Include="Event\StateMachineBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

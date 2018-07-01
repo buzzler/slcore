@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SLCore.Data;
 using SLCore.Entity;
 
@@ -72,8 +73,11 @@ namespace SLCore.Event.Client
 
         private void OnEventIsReady(GameEventArgs gameEventArgs)
         {
-            Console.WriteLine("{0} Ok, I'm ready.", _client);
-            _client.Dispatcher.PrivateDispatcher.Dispatch(new GameEventArgs(EventType.Ok, _client.Id));
+            Task.Delay(1000).ContinueWith(task =>
+            {
+                Console.WriteLine("{0} Ok, I'm ready.", _client);
+                _client.Dispatcher.PrivateDispatcher.Dispatch(new GameEventArgs(EventType.Ok, _client.Id));                
+            });
         }
 
         private void OnEventClear(GameEventArgs gameEventArgs)

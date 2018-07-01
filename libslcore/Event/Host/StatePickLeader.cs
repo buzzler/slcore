@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SLCore.Data;
 using SLCore.Entity;
 
@@ -20,10 +21,27 @@ namespace SLCore.Event.Host
         public override void OnEnterState(StateBase prevState)
         {
             base.OnEnterState(prevState);
+            _host.Dispatcher.PublicDispatcher.Event += OnPublicEvent;
+
             ClearCard();
             ShuffleCard();
             FlipCard();
-            _host.ChangeState(new StateSettingHost(_host));
+        }
+
+        public override void OnExitState(StateBase nextState)
+        {
+            base.OnExitState(nextState);
+            _host.Dispatcher.PublicDispatcher.Event -= OnPublicEvent;
+        }
+
+        private void OnPublicEvent(object sender, GameEventArgs args)
+        {
+            switch (args.Type)
+            {
+                case EventType.Leader:
+                    _host.ChangeState(new StateSettingHost(_host));
+                    break;
+            }
         }
 
         #endregion
@@ -33,14 +51,14 @@ namespace SLCore.Event.Host
         private void ClearCard()
         {
             var pubdata = _host.Data.PublicData;
-            pubdata.HostKnown.Clear();            
+            pubdata.HostKnown.Clear();
             foreach (var clientKnown in pubdata.ClientKnowns)
                 clientKnown.Clear();
             foreach (var clientUknown in _host.Data.ClientsDatas)
                 clientUknown.Unknown.Clear();
             var pridata = _host.Data.PrivateData;
             pridata.Unknown.Clear();
-            
+
             _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.ClearCard));
         }
 
@@ -84,9 +102,11 @@ namespace SLCore.Event.Host
                 _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.FlipNewCard, i, last));
             }
 
-            _host.SetLeader(leader);
-            _host.SetTurn(leader);
-            _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.Leader, leader));
+            Task.Delay(1000).ContinueWith(task =>
+            {
+                _host.Data.SetLeader(leader);
+                _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.Leader, leader));
+            });
         }
 
         #endregion

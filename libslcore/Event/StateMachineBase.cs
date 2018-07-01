@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SLCore.Event
+﻿namespace SLCore.Event
 {
     public class StateMachineBase
     {

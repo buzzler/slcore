@@ -12,9 +12,11 @@
         ShuffleCard,
         FlipNewCard,
         TakeNewCard,
+        OpenCard,
         Turn,
         Win,
         Lose,
+        Draw,
         NewGame,
     }
 }

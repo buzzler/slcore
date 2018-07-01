@@ -1,5 +1,4 @@
-﻿using System;
-using SLCore.Data;
+﻿using SLCore.Data;
 using SLCore.Event;
 using SLCore.Event.Host;
 
@@ -21,16 +20,6 @@ namespace SLCore.Entity
         public void Start()
         {
             StartState(new StateReadyHost(this));
-        }
-
-        internal void SetLeader(int id)
-        {
-            Data.Leader = id;
-        }
-
-        internal void SetTurn(int id)
-        {
-            Data.Turn = id;
         }
         
         public override string ToString()

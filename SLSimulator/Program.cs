@@ -6,6 +6,8 @@
         {
             var house = new SLCore.Entity.GameHouse();
             house.Foo();
+            while (true)
+                ;
         }
     }
 }
