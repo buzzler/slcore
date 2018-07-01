@@ -1,0 +1,5 @@
+.idea/*
+libslcore/bin/*
+libslcore/obj/*
+SLSimulator/bin/*
+SLSimulator/obj/*
