@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SLCore.Entity;
 
 namespace SLCore.Event.Client
@@ -19,8 +20,6 @@ namespace SLCore.Event.Client
             base.OnEnterState(prevState);
             _client.Dispatcher.PublicDispatcher.Event += OnPublicEvent;
             _client.Dispatcher.PrivateDispatcher.Event += OnPrivateEvent;
-            
-            Console.WriteLine($"{_client} result");
         }
 
         public override void OnExitState(StateBase nextState)
@@ -28,7 +27,6 @@ namespace SLCore.Event.Client
             base.OnExitState(nextState);
             _client.Dispatcher.PublicDispatcher.Event -= OnPublicEvent;
             _client.Dispatcher.PrivateDispatcher.Event -= OnPrivateEvent;
-
         }
         
         #endregion
@@ -37,12 +35,28 @@ namespace SLCore.Event.Client
 
         private void OnPublicEvent(object sender, GameEventArgs args)
         {
-            throw new System.NotImplementedException();
+            switch (args.Type)
+            {
+                case EventType.NewGame:
+                    _client.ChangeState(new StateSettingClient(_client));
+                    break;
+                case EventType.ExitGame:
+                    _client.ChangeState(new StateReadyClient(_client));
+                    break;
+            }
         }
 
         private void OnPrivateEvent(object sender, GameEventArgs args)
         {
-            throw new System.NotImplementedException();
+            switch (args.Type)
+            {
+                case EventType.PlayAgain:
+                    Task.Delay(100).ContinueWith(task =>
+                    {
+                        _client.Dispatcher.PrivateDispatcher.Dispatch(new GameEventArgs(EventType.Ok, _client.Id));
+                    });
+                    break;
+            }
         }
 
         #endregion

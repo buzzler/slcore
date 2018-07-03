@@ -18,18 +18,49 @@ namespace SLCore.Event.Host
         public override void OnEnterState(StateBase prevState)
         {
             base.OnEnterState(prevState);
+            _host.Dispatcher.PublicDispatcher.Event += OnPublicEvent;
+            foreach (var dispatcher in _host.Dispatcher.PrivateDispatchers)
+                dispatcher.Event += OnPrivateEvent;
             AskReady();
-            _host.ChangeState(new StatePickLeader(_host));
         }
 
-        public override void Dispose()
+        public override void OnExitState(StateBase nextState)
         {
-            base.Dispose();
-            _host = null;
+            base.OnExitState(nextState);
+            _host.Dispatcher.PublicDispatcher.Event -= OnPublicEvent;
+            foreach (var dispatcher in _host.Dispatcher.PrivateDispatchers)
+                dispatcher.Event -= OnPrivateEvent;
         }
         
         #endregion
 
+        #region EventHandlers
+
+        private void OnPrivateEvent(object sender, GameEventArgs args)
+        {
+        }
+
+        private void OnPublicEvent(object sender, GameEventArgs args)
+        {
+            switch (args.Type)
+            {
+                case EventType.Join:
+                    OnEventJoin(args);
+                    break;
+                case EventType.Demit:
+                    break;
+            }
+        }
+
+        private void OnEventJoin(GameEventArgs args)
+        {
+            var clients = _host.Data.GetClientCount();
+            if (clients >= 2)
+                AskReady();
+        }
+
+        #endregion
+        
         #region Processes
 
         private void AskReady()
@@ -60,6 +91,7 @@ namespace SLCore.Event.Host
                 foreach (var dispatcher in _host.Dispatcher.PrivateDispatchers)
                     dispatcher.Event -= OnReady;
             }
+            _host.ChangeState(new StatePickLeader(_host));
         }
 
         #endregion

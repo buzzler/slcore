@@ -23,6 +23,7 @@ namespace SLCore.Event.Client
             var dispatcher = _client.Dispatcher;
             dispatcher.PublicDispatcher.Event += OnPublicEvent;
             dispatcher.PrivateDispatcher.Event += OnPrivateEvent;
+            dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.Join, _client.Id));
         }
 
         public override void OnExitState(StateBase nextState)

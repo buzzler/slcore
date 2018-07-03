@@ -2,6 +2,8 @@
 {
     public enum EventType
     {
+        Join,
+        Demit,
         Ok,
         Cancel,
         IsReady,
@@ -17,6 +19,8 @@
         Win,
         Lose,
         Draw,
+        PlayAgain,
         NewGame,
+        ExitGame
     }
 }

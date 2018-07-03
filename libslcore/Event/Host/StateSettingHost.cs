@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SLCore.Data;
 using SLCore.Entity;
 
@@ -21,12 +22,7 @@ namespace SLCore.Event.Host
         {
             base.OnEnterState(prevState);
             _host.Dispatcher.PublicDispatcher.Event += OnPublicEvent;
-            
-            ClearCard();
-            ShuffleCard();
-            PassingCard();
-            
-            _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.GameStart));
+            Task.Delay(100).ContinueWith(Setting);
         }
 
         public override void OnExitState(StateBase nextState)
@@ -55,6 +51,15 @@ namespace SLCore.Event.Host
         #endregion
 
         #region Processes
+
+        private void Setting(Task task)
+        {
+            ClearCard();
+            ShuffleCard();
+            PassingCard();
+            
+            _host.Dispatcher.PublicDispatcher.Dispatch(new GameEventArgs(EventType.GameStart));
+        }
 
         private void ClearCard()
         {
