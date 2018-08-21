@@ -24,6 +24,11 @@ namespace SLCore.Event.Host
             AskReady();
         }
 
+        public override void OnLoop()
+        {
+            base.OnLoop();
+        }
+
         public override void OnExitState(StateBase nextState)
         {
             base.OnExitState(nextState);

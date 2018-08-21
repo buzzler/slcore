@@ -5,9 +5,12 @@
         public static void Main(string[] args)
         {
             var house = new SLCore.Entity.GameHouse();
-            house.Foo();
+            house.AddClient();
+            house.AddClient();
+            house.AddObserver();
+            house.Start();
             while (true)
-                ;
+                house.Loop();
         }
     }
 }

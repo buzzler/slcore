@@ -52,14 +52,18 @@ namespace SLCore.Entity
             Observers.Add(new GameObserver(id, HostDispatcher, new ObserverData(HostPublicData)));
         }
 
-        
-        public void Foo()
+        public void Start()
         {
-            AddClient();
-            AddClient();
-            AddObserver();
-            
             Host.Start();
+        }
+
+        public void Loop()
+        {
+            Host.LoopState();
+            foreach (var gameClient in Clients)
+                gameClient.LoopState();
+            foreach (var gameObserver in Observers)
+                gameObserver.LoopState();
         }
     }
 }

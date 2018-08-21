@@ -10,7 +10,7 @@
             CurrentState.OnEnterState(null);
         }
 
-        internal void LoopState()
+        public void LoopState()
         {
             CurrentState?.OnLoop();
         }
